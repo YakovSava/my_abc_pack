@@ -28,3 +28,10 @@ class ABCJson(ABCBinder):
 	async def get(self) -> dict:
 		lines = await self._get()
 		return eval(f'{lines}')
+
+class ABCPhoto(ABCBinder):
+	async def _get_bytes(self) -> bytes:
+		async with aiopen(self.filename, 'rb') as photo: return await photo.read()
+
+	async def _set_bytes(self, byte:bytes) -> None:
+		async with aiopen(self.filename, 'wb') as photo: await photo.write(byte)
