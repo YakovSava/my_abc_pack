@@ -1,8 +1,8 @@
 from typing import Coroutine
 from bs4 import BeautifulSoup
 from aiohttp.web import Application, get, Response
-from abcbase import ABCError, ABClass
-from abcbinder import ABCBinder, ABCPhoto
+from .abcbase import ABCError, ABClass
+from .abcbinder import ABCBinder, ABCPhoto
 
 class ABCParsError(ABCError): pass
 
@@ -90,7 +90,7 @@ class ABCHTMLParcer(ABClass):
 			lines = await file_commander._get()
 			return Response(
 				body=lines,
-				content_type='text/css'
+				content_type='text/javascript'
 			)
 		return _js_getter
 
@@ -100,6 +100,6 @@ class ABCHTMLParcer(ABClass):
 			byte = await file_commander._get_bytes()
 			return Response(
 				body=byte,
-				content_type='text/css'
+				content_type=type
 			)
 		return _photo_getter

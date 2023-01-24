@@ -1,7 +1,7 @@
 import asyncio
 
 from typing import Coroutine
-from abcbase import ABClass, ABCError
+from .abcbase import ABClass, ABCError
 
 class ABCAsyncError(ABCError): pass
 

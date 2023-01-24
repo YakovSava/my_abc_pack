@@ -2,9 +2,7 @@ class ABClass: pass
 
 class ABCError(ABClass, Exception): pass
 
-class ABCMethod(ABClass):
-	def __new__(cls):
-		return super.__new__(cls)
+class ABCMethod(ABClass): pass
 
 class ABCWith(ABCMethod):
 	def __enter__(self): return self
@@ -42,9 +40,6 @@ class ABCStorage(ABClass):
 			raise self.ABCStorageError(str(ex))
 
 	async def get(self, key):
-		try:
-			return self._storage[key]
-		except Exception as ex:
-			raise self.ABCStorageError(str(ex))
+		return self._storage.get(key)
 
 	def __eq__(self, other): return other in self._storage
