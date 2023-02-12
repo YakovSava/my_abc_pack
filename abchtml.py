@@ -30,48 +30,49 @@ class ABCHTMLParcer(ABClass):
 		# 'FLV': 		'video/x-flv'
 		# 'AVI': 		'video/x-msvideo'
 
-	def set_server_paths(self, path_to_html_file:str) -> Application:
-		with open(path_to_html_file, 'r', encoding='utf-8') as html:
-			lines = html.read()
-		html = BeautifulSoup(lines)
-		src_script = list(map(lambda x: x['src'], html.find_all('script')))
-		src_img = list(map(lambda x: x['src'], html.find_all('img')))
-		self.app.add_routes(
-			[
-				get(
-					[
-						link_obj['href'],
-						self._get_coro(link_obj['href'])
-					]
-				) 
-				for link_obj in (html.find_all('link'))
-				if (link_obj['rel'].lower() == 'stylesheet') and (not link_obj['href'].startswith('http'))
-			]
-		)
-		self.app.add_routes(
-			[
-				get(
-					[
-						script_obj['src'],
-						self._get_script(script_obj['src'])
-					]
-				)
-				for script_obj in src_script
-				if not (script_obj['href'].startswith('http'))
-			]
-		)
-		self.app.add_routes(
-			[
-				get(
-					[
-						img_obj['src'],
-						self._get_script(img_obj['src'])
-					]
-				)
-				for img_obj in src_img
-				if not (img_obj['href'].startswith('http'))
-			]
-		)
+	def set_server_paths(self, path_to_html_files:list) -> Application:
+		for path_to_html_file in path_to_html_files:
+			with open(path_to_html_file, 'r', encoding='utf-8') as html:
+				lines = html.read()
+			html = BeautifulSoup(lines)
+			src_script = list(map(lambda x: x['src'], html.find_all('script')))
+			src_img = list(map(lambda x: x['src'], html.find_all('img')))
+			self.app.add_routes(
+				[
+					get(
+						[
+							link_obj['href'],
+							self._get_coro(link_obj['href'])
+						]
+					) 
+					for link_obj in (html.find_all('link'))
+					if (link_obj['rel'].lower() == 'stylesheet') and (not link_obj['href'].startswith('http'))
+				]
+			)
+			self.app.add_routes(
+				[
+					get(
+						[
+							script_obj['src'],
+							self._get_script(script_obj['src'])
+						]
+					)
+					for script_obj in src_script
+					if not (script_obj['href'].startswith('http'))
+				]
+			)
+			self.app.add_routes(
+				[
+					get(
+						[
+							img_obj['src'],
+							self._get_script(img_obj['src'])
+						]
+					)
+					for img_obj in src_img
+					if not (img_obj['href'].startswith('http'))
+				]
+			)
 		return self.app
 
 	def _get_coro(self, path:str) -> Coroutine:
