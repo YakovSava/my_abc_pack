@@ -1,10 +1,10 @@
-from abctg.abcbase import *
-from abctg.abcbinder import *
-from abctg.abcasync import *
-from abctg.abchtml import *
-from abctg.abconnector import *
-from abctg.abctelegram import *
-from abctg.abcxx import *
+from abcbase import *
+from abcbinder import *
+from abcasync import *
+from abchtml import *
+from abconnector import *
+from abctelegram import *
+from abcxx import *
 
 ALL = {
 	'base': [
