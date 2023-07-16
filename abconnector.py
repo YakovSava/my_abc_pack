@@ -1,9 +1,9 @@
-    import asyncio
+import asyncio
 
 from json import load
 from aiohttp import ClientSession
 from fake_useragent import UserAgent
-from .abcbase import ABClass, ABCError
+from abcbase import ABClass, ABCError
 
 
 class ABCConnectorError(ABCError):

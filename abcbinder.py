@@ -1,7 +1,7 @@
 from os.path import join, exists
 from typing import Any
 from aiofiles import open as aiopen
-from .abcbase import ABClass, ABCError
+from abcbase import ABClass, ABCError
 
 
 class ABCBinderError(ABCError):

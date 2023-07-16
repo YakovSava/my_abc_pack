@@ -1,7 +1,7 @@
 from asyncio import AbstractEventLoop
 from multiprocessing import Process
 from aiogram import Bot, Dispatcher, executor
-from .abcbase import ABCError, ABClass
+from abcbase import ABCError, ABClass
 
 
 class ABCTelegramBotError(ABCError):

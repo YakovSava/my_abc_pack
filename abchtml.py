@@ -1,8 +1,8 @@
 from typing import Coroutine
 from bs4 import BeautifulSoup
 from aiohttp.web import Application, get, Response
-from .abcbase import ABCError, ABClass
-from .abcbinder import ABCBinder, ABCPhoto
+from abcbase import ABCError, ABClass
+from abcbinder import ABCBinder, ABCPhoto
 
 
 class ABCParsError(ABCError):

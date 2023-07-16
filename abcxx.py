@@ -1,7 +1,7 @@
 from os import listdir
 from sys import platform
 from ctypes import *
-from .abcbase import ABCError, ABClass
+from abcbase import ABCError, ABClass
 
 
 class ABCDllError(ABCError):
