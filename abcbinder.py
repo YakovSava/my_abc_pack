@@ -1,5 +1,6 @@
 from os.path import join, exists
 from typing import Any
+from json import loads
 from aiofiles import open as aiopen
 from abcbase import ABClass, ABCError
 
@@ -33,7 +34,7 @@ class ABCBinder(ABClass):
 class ABCJson(ABCBinder):
     async def get(self) -> dict:
         lines = await self._get()
-        return eval(f'{lines}')
+        return loads(f'{lines}')
 
 
 class ABCPhoto(ABCBinder):
