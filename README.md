@@ -85,7 +85,7 @@ starter = ABCAsyncStarter()
 ...
 
 if __name__ == '__main__':
-	starter._start(
+	starter.start(
 		polling(),
 		awaiting(),
 		app_starter()
