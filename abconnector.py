@@ -14,16 +14,27 @@ class ABCConnector(ABClass):
     def __init__(self,
                  loop: asyncio.AbstractEventLoop=asyncio.get_event_loop(),
                  custom_connector: ClientSession=None,
-                 proxy: str=None
+                 proxy: str=None,
+                 user_agent: bool or None or str=None
                  ):
         self.loop = loop
         self.session = custom_connector if custom_connector is not None else loop.run_until_complete(
             self._construct())
         self.agent = UserAgent()
-        self.parameters = {
-            'proxy': proxy,
-            'headers': {"user-agent": self.agent.random}
-        }
+        if user_agent:
+            if isinstance(user_agent, str):
+                self.agent_str = user_agent
+            else:
+                self.agent_str = self.agent.random
+
+            self.parameters = {
+                'proxy': proxy,
+                'headers': {"user-agent": self.agent_str}
+            }
+        else:
+            self.parameters = {
+                'proxy': proxy
+            }
 
     async def change_user_agent(self):
         self.parameters['headers'] = {"user-agent": self.agent.random}
