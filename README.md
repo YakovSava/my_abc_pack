@@ -1,4 +1,7 @@
-# How to use this ~~shit~~ program
+# Important note!
+Scroll to the bottom please
+
+# How to use this shit ~~program~~
 Everything is very easy! Add the project to your directory and immediately start importing.
 Here's an example:
 <blockquote> There will be examples here in the future </blockquote>
@@ -91,3 +94,6 @@ if __name__ == '__main__':
 		app_starter()
 	)
 ```
+
+# Why did I decide to close this project and archive it?
+I realized that while I was practicing writing Python code for Telegram, I made a lot of mistakes, so let it be public, I no longer want to continue this inconvenient project and understand the intricacies of [aiogram 3.0](https://github.com/aiogram/aiogram), sorry =(
